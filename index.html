@@ -8,74 +8,96 @@
 <style>
 body{
     margin:0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg,#0f172a,#1e293b);
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle,#0f172a,#020617);
     color:white;
+    overflow-x:hidden;
 }
 
 section{
-    padding:60px 20px;
+    padding:80px 20px;
     text-align:center;
+    opacity:0;
+    transform:translateY(20px);
+    animation:fadeUp 1s forwards;
 }
 
-h1,h2{
-    margin-bottom:20px;
+section:nth-child(1){animation-delay:0.2s;}
+section:nth-child(2){animation-delay:0.4s;}
+section:nth-child(3){animation-delay:0.6s;}
+section:nth-child(4){animation-delay:0.8s;}
+section:nth-child(5){animation-delay:1s;}
+
+@keyframes fadeUp{
+    to{opacity:1; transform:translateY(0);}
+}
+
+h1{
+    font-size:3rem;
+    margin-bottom:10px;
 }
 
 p{
     max-width:700px;
     margin:auto;
     line-height:1.8;
+    font-size:1.1rem;
 }
 
 .btn{
     margin-top:20px;
-    padding:12px 25px;
+    padding:12px 30px;
     border:none;
-    border-radius:25px;
+    border-radius:30px;
     background:#ff4d6d;
     color:white;
     font-size:16px;
     cursor:pointer;
 }
 
-.card{
-    background:rgba(255,255,255,0.1);
-    margin:10px;
-    padding:20px;
-    border-radius:15px;
-    display:inline-block;
-    width:250px;
-}
-
 input{
-    padding:10px;
+    padding:12px;
     width:220px;
-    margin-top:10px;
     border-radius:10px;
     border:none;
     text-align:center;
-}
-
-.hidden{
-    display:none;
-}
-
-.show{
-    display:block !important;
-    margin-top:20px;
-    animation: fade 0.6s ease-in-out;
-}
-
-@keyframes fade{
-    from{opacity:0; transform:translateY(10px);}
-    to{opacity:1; transform:translateY(0);}
+    margin-top:10px;
 }
 
 .hint{
     font-size:13px;
-    opacity:0.7;
-    margin-top:8px;
+    opacity:0.6;
+    margin-top:5px;
+}
+
+.hidden{display:none;}
+
+.show{
+    display:block !important;
+    margin-top:20px;
+    animation:fade 1s ease;
+}
+
+@keyframes fade{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+.typing{
+    border-right:2px solid white;
+    white-space:nowrap;
+    overflow:hidden;
+    display:inline-block;
+    animation:typing 4s steps(40,end), blink 0.7s infinite;
+}
+
+@keyframes typing{
+    from{width:0;}
+    to{width:100%;}
+}
+
+@keyframes blink{
+    50%{border-color:transparent;}
 }
 
 .heart{
@@ -90,8 +112,7 @@ input{
 }
 
 .final{
-    margin-top:50px;
-    font-size:18px;
+    margin-top:60px;
     font-style:italic;
 }
 </style>
@@ -99,10 +120,16 @@ input{
 
 <body>
 
+<!-- 🎵 YouTube Background Music -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/1ZYbU82GVz4?autoplay=1&loop=1&playlist=1ZYbU82GVz4"
+frameborder="0"
+allow="autoplay">
+</iframe>
+
 <section>
 <h1>For Honey ❤️</h1>
-<p>This is not a gift. This is a piece of my heart built into a website.</p>
-
+<p class="typing">This is not a gift... this is a feeling I couldn't say out loud.</p>
 <button class="btn" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">
 Enter
 </button>
@@ -111,41 +138,36 @@ Enter
 <section id="story">
 <h2>Our Story</h2>
 <p>
-We met on Bumble by accident. From day one, it never felt casual — only real.
-We talked about marriage, future, and life.
+We met on Bumble by accident.  
+But somehow, everything after that felt intentional.
+We didn’t talk like strangers — we talked like future.
 </p>
 </section>
 
 <section>
 <h2>What I Love About You</h2>
-
-<div class="card">Your honesty</div>
-<div class="card">Your kindness</div>
-<div class="card">Your cute anger</div>
-<div class="card">Your strong character</div>
-<div class="card">Your beautiful heart</div>
-<div class="card">Your smile</div>
-
+<p>
+Your honesty. Your kindness. Your cute anger. Your strong heart.  
+And the way you care even when you're upset.
+</p>
 </section>
 
 <section>
 <h2>What I Want to Say</h2>
 <p>
-I know I don’t always understand your feelings properly.  
-But I am learning because you matter to me more than anything.
+I know I don’t always understand your feelings perfectly.  
+But I am learning… because you matter more than my ego, more than anything.
 </p>
 </section>
 
 <section>
-<h2>Secret Page</h2>
+<h2>Secret Unlock</h2>
 
 <p>Enter password</p>
 
-<input type="password" id="pass" placeholder="Hint: your nickname ❤️">
+<input type="password" id="pass" placeholder="Hint: my nickname for you ❤️">
 
-<div class="hint">
-Hint: Only I call you this name 😉
-</div>
+<div class="hint">Only I call you this 😉</div>
 
 <br>
 
@@ -154,19 +176,18 @@ Hint: Only I call you this name 😉
 <div id="secret" class="hidden">
 <p>
 A surprise is coming…  
-I won’t tell you when.  
-But I am already on my way to you ❤️
+Not now, not told, not planned for words.
+But I am already coming closer to you ❤️
 </p>
 </div>
-
 </section>
 
 <section class="final">
 <p>
 Of all the people I could have met… I met you.  
-And I would choose you again every single time.
+And I would choose you again — every single time.
 </p>
-<h3>— Surya ❤️</h3>
+<h2>— Surya ❤️</h2>
 </section>
 
 <script>
@@ -177,8 +198,9 @@ function check(){
     if(input === "honey"){
         secret.classList.remove("hidden");
         secret.classList.add("show");
+        alert("Unlocked ❤️");
     } else {
-        alert("Wrong password ❤️ Try again");
+        alert("Wrong password ❤️");
     }
 }
 
