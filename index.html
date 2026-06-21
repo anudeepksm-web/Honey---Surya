@@ -7,253 +7,220 @@
 
 <style>
 body{
-    margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background:#0b0b0b;
-    color:white;
-    overflow-x:hidden;
+margin:0;
+background:#0b0b0b;
+color:white;
+font-family:Arial;
+overflow:hidden;
 }
 
-/* 🎥 STABLE BACKGROUND */
+/* 🎥 BACKGROUND */
 .video-bg{
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    z-index:-3;
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-3;
 }
 
 .video-bg iframe{
-    position:absolute;
-    top:50%;
-    left:50%;
-    width:140vw;
-    height:140vh;
-    transform:translate(-50%,-50%);
-    pointer-events:none;
+position:absolute;
+top:50%;
+left:50%;
+width:150vw;
+height:150vh;
+transform:translate(-50%,-50%);
+pointer-events:none;
 }
 
-/* 🌑 OVERLAY */
 .overlay{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.80);
-    z-index:-2;
+position:fixed;
+width:100%;
+height:100%;
+background:radial-gradient(circle, rgba(0,0,0,0.2), rgba(0,0,0,0.95));
+z-index:-2;
 }
 
-/* 🎬 NETFLIX HEADER */
+/* NETFLIX HEADER */
 .logo{
-    position:fixed;
-    top:20px;
-    left:30px;
-    color:#e50914;
-    font-size:24px;
-    font-weight:700;
-    letter-spacing:2px;
+position:fixed;
+top:20px;
+left:30px;
+color:#e50914;
+font-size:24px;
+font-weight:700;
+letter-spacing:2px;
 }
 
-/* 📺 SCREENS */
+/* SCREEN */
 .screen{
-    display:none;
-    min-height:100vh;
-    padding:80px 8vw;
-    flex-direction:column;
-    justify-content:center;
+display:none;
+height:100vh;
+padding:80px 10vw;
+flex-direction:column;
+justify-content:center;
 }
 
 .active{display:flex;}
 
-/* TITLES */
 h1{font-size:4rem;margin:0;}
-h2{font-size:2.2rem;margin-bottom:10px;}
+h2{font-size:2.2rem;margin:0 0 10px 0;}
 
 p{
-    font-size:1.2rem;
-    line-height:1.8;
-    max-width:850px;
-    opacity:0.95;
+font-size:1.2rem;
+line-height:1.8;
+max-width:850px;
+opacity:0.95;
 }
 
-/* BUTTON */
+/* BUTTONS */
+.controls{
+position:fixed;
+bottom:30px;
+right:30px;
+display:flex;
+gap:10px;
+}
+
 button{
-    margin-top:20px;
-    padding:12px 26px;
-    background:#e50914;
-    border:none;
-    color:white;
-    border-radius:4px;
-    cursor:pointer;
-    font-size:15px;
+padding:12px 20px;
+border:none;
+background:#e50914;
+color:white;
+cursor:pointer;
+border-radius:4px;
+font-size:14px;
 }
 
-/* 🎞️ NETFLIX CARDS */
-.row{
-    display:flex;
-    gap:15px;
-    margin-top:20px;
-    flex-wrap:wrap;
-}
-
-.card{
-    width:200px;
-    height:120px;
-    background:#222;
-    border-radius:6px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    transition:0.3s;
-    text-align:center;
-    padding:10px;
-}
-
-.card:hover{
-    transform:scale(1.05);
-    background:#333;
-}
-
-/* FADE */
-.fade{
-    animation:fade 1s ease;
-}
-
-@keyframes fade{
-    from{opacity:0; transform:translateY(10px);}
-    to{opacity:1; transform:translateY(0);}
-}
-
-/* HEARTS */
-.heart{
-    position:fixed;
-    top:-10px;
-    color:#ff4d6d;
-    animation:fall 6s linear;
-}
-
-@keyframes fall{
-    to{transform:translateY(110vh);}
+/* CLOCK */
+#clock{
+font-size:3rem;
+color:#00ffd5;
+margin-top:20px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎥 BACKGROUND (STABLE YOUTUBE) -->
+<!-- 🎥 BACKGROUND (FIXED STABLE) -->
 <div class="video-bg">
-    <iframe
-        src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1"
-        frameborder="0"
-        allow="autoplay">
-    </iframe>
+<iframe
+src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1"
+frameborder="0"
+allow="autoplay">
+</iframe>
 </div>
 
 <div class="overlay"></div>
 
 <div class="logo">NETFLIX</div>
 
-<!-- 🎬 HOME -->
-<div id="home" class="screen active">
-<h1>For Honey ❤️</h1>
-<p>A Netflix-style love story experience.</p>
+<!-- 🎬 STAGES -->
 
-<button onclick="start()">Play Story</button>
-
-<div class="row">
-    <div class="card" onclick="openScene(1)">Our Beginning</div>
-    <div class="card" onclick="openScene(2)">Memories</div>
-    <div class="card" onclick="openScene(3)">Truth</div>
-</div>
+<div id="s1" class="screen active">
+<h1>Stage 1 — The Accident</h1>
+<p>We didn’t plan to meet. But somehow, we still spoke like it mattered from the first message.</p>
 </div>
 
-<!-- 🎬 SCENE 1 -->
-<div id="s1" class="screen">
-<h2>Our Beginning</h2>
-<p>We met on Bumble by accident, but nothing after that ever felt accidental.</p>
-<button onclick="next(1)">Next</button>
-</div>
-
-<!-- 🎬 SCENE 2 -->
 <div id="s2" class="screen">
-<h2>Memories</h2>
-<p>Day 1 talks about forever. Laughs. Silence. Everything stayed.</p>
-<button onclick="next(2)">Next</button>
+<h2>Stage 2 — Day 1 Forever Talk</h2>
+<p>We spoke about marriage, life, forever… before most people even understand each other.</p>
 </div>
 
-<!-- 🎬 SCENE 3 -->
 <div id="s3" class="screen">
-<h2>Truth</h2>
-<p>I didn’t always understand your feelings… but I never stopped trying.</p>
-<button onclick="next(3)">Next</button>
+<h2>Stage 3 — Becoming “Us”</h2>
+<p>You slowly became my routine. Not a habit… but something I looked forward to.</p>
 </div>
 
-<!-- 🎬 FINAL -->
-<div id="final" class="screen">
-<h1>Final Scene ❤️</h1>
-<p id="msg">...</p>
-<button onclick="reveal()">Reveal Ending</button>
+<div id="s4" class="screen">
+<h2>Stage 4 — Misunderstanding</h2>
+<p>I didn’t always understand your feelings. But I never ignored them either.</p>
+</div>
+
+<div id="s5" class="screen">
+<h2>Stage 5 — Distance</h2>
+<p>Distance didn’t change anything… but silence sometimes did.</p>
+</div>
+
+<div id="s6" class="screen">
+<h2>Stage 6 — Truth</h2>
+<p>I am not perfect. But I am consistent. I am always there for you.</p>
+</div>
+
+<div id="s7" class="screen">
+<h2>Waiting for you...</h2>
+
+<div id="clock"></div>
+<p id="msg"></p>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+<button onclick="prev()">Prev</button>
+<button onclick="next()">Next</button>
 </div>
 
 <script>
 
-let stage=0;
+let stage=1;
+let autoPaused=false;
+let autoTimer;
 
-/* HOME START */
-function start(){
-    document.getElementById("home").style.display="none";
-    document.getElementById("s1").classList.add("active");
+/* SHOW STAGE */
+function show(n){
+document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+document.getElementById("s"+n).classList.add("active");
+stage=n;
+
+if(stage===7){
+startClock();
+}
 }
 
-/* CARD OPEN */
-function openScene(n){
-    document.getElementById("home").style.display="none";
-    document.getElementById("s"+n).classList.add("active");
-    stage=n;
+/* NEXT / PREV */
+function next(){
+autoPaused=true;
+if(stage<7) show(stage+1);
 }
 
-/* NEXT FLOW */
-function next(n){
-    document.getElementById("s"+n).style.display="none";
-    let nextStage=n+1;
-    document.getElementById("s"+nextStage).classList.add("active");
+function prev(){
+autoPaused=true;
+if(stage>1) show(stage-1);
 }
 
-/* FINAL SEQUENCE */
-function reveal(){
-    const msg=document.getElementById("msg");
-
-    let lines=[
-        "I am always there for you ❤️",
-        "Are you still angry on me?",
-        "I really love you ❤️",
-        "Please call me. I am waiting."
-    ];
-
-    let i=0;
-
-    function show(){
-        if(i<lines.length){
-            msg.className="fade";
-            msg.innerText=lines[i];
-            i++;
-            setTimeout(show,2500);
-        }
-    }
-
-    show();
+/* AUTO FLOW (30s) */
+function autoFlow(){
+autoTimer=setInterval(()=>{
+if(!autoPaused){
+if(stage<7){
+show(stage+1);
+}
+}
+},30000);
 }
 
-/* HEARTS */
-setInterval(()=>{
-    let h=document.createElement("div");
-    h.className="heart";
-    h.innerText="❤️";
-    h.style.left=Math.random()*100+"vw";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),6000);
-},500);
+/* CLOCK (INDIA TIME) */
+function startClock(){
+function update(){
+let now=new Date();
+let opt={timeZone:"Asia/Kolkata",hour:"2-digit",minute:"2-digit",second:"2-digit"};
+
+document.getElementById("clock").innerText=
+"India Time: "+new Intl.DateTimeFormat("en-IN",opt).format(now);
+
+document.getElementById("msg").innerText=
+"I was waiting for your call… and I still am.";
+}
+
+update();
+setInterval(update,1000);
+}
+
+/* START */
+show(1);
+autoFlow();
 
 </script>
 
