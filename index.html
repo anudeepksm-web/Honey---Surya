@@ -8,13 +8,13 @@
 <style>
 body{
 margin:0;
-background:#0b0b0b;
+background:black;
 color:white;
 font-family:Arial;
 overflow:hidden;
 }
 
-/* 🌌 BACKGROUND IMAGE */
+/* 🌌 TRUE NORTHERN LIGHTS BACKGROUND */
 .bg{
 position:fixed;
 width:100%;
@@ -22,8 +22,8 @@ height:100%;
 top:0;
 left:0;
 z-index:-3;
-background:url("https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?auto=format&fit=crop&w=1920&q=80") center/cover no-repeat;
-filter:brightness(0.7);
+background:url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1920&q=80") center/cover no-repeat;
+filter:brightness(0.75);
 }
 
 .overlay{
@@ -34,7 +34,7 @@ background:radial-gradient(circle, rgba(0,0,0,0.2), rgba(0,0,0,0.92));
 z-index:-2;
 }
 
-/* NETFLIX LOGO */
+/* LOGO */
 .logo{
 position:fixed;
 top:20px;
@@ -42,7 +42,6 @@ left:30px;
 color:#e50914;
 font-size:24px;
 font-weight:700;
-letter-spacing:2px;
 }
 
 /* SCREEN */
@@ -56,13 +55,24 @@ justify-content:center;
 
 .active{display:flex;}
 
-h1{font-size:4rem;margin:0;}
-h2{font-size:2.2rem;margin-bottom:10px;}
+h1{font-size:3.8rem;margin:0;}
+h2{font-size:2.2rem;}
 
 p{
 font-size:1.2rem;
 line-height:1.8;
 max-width:850px;
+white-space:pre-line;
+}
+
+/* INPUT */
+input{
+padding:12px;
+width:260px;
+border:none;
+margin-top:10px;
+text-align:center;
+border-radius:4px;
 }
 
 /* BUTTON */
@@ -76,105 +86,117 @@ border-radius:4px;
 margin-top:15px;
 }
 
+/* TYPEWRITER */
+.type{
+border-right:2px solid white;
+display:inline-block;
+white-space:nowrap;
+overflow:hidden;
+animation:typing 3s steps(60,end), blink 0.8s infinite;
+}
+
+@keyframes typing{
+from{width:0;}
+to{width:100%;}
+}
+
+@keyframes blink{
+50%{border-color:transparent;}
+}
+
 /* CLOCK */
 #clock{
 font-size:3rem;
 color:#00ffd5;
 margin-top:20px;
 }
-
-/* FINAL TEXT */
-.highlight{
-font-size:1.4rem;
-font-weight:700;
-color:white;
-margin-top:20px;
-}
-
-.signature{
-margin-top:20px;
-font-size:1.2rem;
-color:#e50914;
-font-weight:700;
-}
 </style>
 </head>
 
 <body>
 
-<!-- 🌌 BACKGROUND -->
 <div class="bg"></div>
 <div class="overlay"></div>
 
 <div class="logo">NETFLIX</div>
 
-<!-- 🎧 MUSIC (hidden, starts on click) -->
+<!-- 🎧 MUSIC -->
 <iframe id="music" width="0" height="0" style="display:none;"></iframe>
 
-<!-- PREVIEW -->
-<div id="p0" class="screen active">
-<h1>Before the story begins…</h1>
+<!-- 🔐 LOGIN -->
+<div id="login" class="screen active">
+<h1 class="type">A private story for Honey</h1>
 
-<p>
-• Talking about forever from day one<br>
-• Laughing at random things only we understood<br>
-• Staying awake just to not say goodbye<br>
-• Fighting… but still not letting go
+<p>Enter password to continue</p>
+
+<input id="pass" placeholder="Hint: my nickname for you ❤️">
+<br>
+<button onclick="unlock()">Unlock</button>
+
+<p style="opacity:0.7;margin-top:10px;">
+Hint: It’s what I call you when I smile ❤️
 </p>
-
-<button onclick="start()">Start the Story</button>
 </div>
 
-<!-- STAGE 1 -->
+<!-- PREVIEW -->
+<div id="p0" class="screen">
+<h1 class="type">Before the story begins…</h1>
+
+<p class="type">
+• Talking about forever from day one  
+• Laughing at things only we understood  
+• Staying awake just to not say goodbye  
+• Fighting… but never leaving  
+</p>
+
+<button onclick="start()">Start Story</button>
+</div>
+
+<!-- STAGES -->
 <div id="s1" class="screen">
-<h1>The moment where my life changed</h1>
-<p>I didn’t realize it then… but meeting you changed everything I thought I knew about life.</p>
+<h1 class="type">The moment where my life changed</h1>
+<p class="type">I didn’t realize it then… but meeting you changed everything I knew about life.</p>
 <button onclick="next(1)">Next</button>
 </div>
 
-<!-- STAGE 2 -->
 <div id="s2" class="screen">
-<h2>What We Became</h2>
-<p>Some conversations don’t feel like conversations… they feel like home forming slowly.</p>
+<h2 class="type">What We Became</h2>
+<p class="type">Some conversations don’t feel like conversations… they feel like home forming slowly.</p>
 <button onclick="next(2)">Next</button>
 </div>
 
-<!-- STAGE 3 -->
 <div id="s3" class="screen">
-<h2>Misunderstanding</h2>
-<p>I didn’t always understand your feelings… but I never ignored them either.</p>
+<h2 class="type">Misunderstanding</h2>
+<p class="type">I didn’t always understand your feelings… but I never ignored them.</p>
 <button onclick="next(3)">Next</button>
 </div>
 
-<!-- STAGE 4 -->
 <div id="s4" class="screen">
-<h2>Distance</h2>
-<p>Even silence feels different when it’s with you.</p>
+<h2 class="type">Distance</h2>
+<p class="type">Even silence feels different when it’s with you.</p>
 <button onclick="next(4)">Next</button>
 </div>
 
-<!-- STAGE 5 -->
 <div id="s5" class="screen">
-<h2>Truth</h2>
-<p>I am not perfect. But I am consistent. I am always there for you.</p>
+<h2 class="type">Truth</h2>
+<p class="type">I am not perfect. But I am consistent. I am always there for you.</p>
 <button onclick="next(5)">Next</button>
 </div>
 
 <!-- FINAL -->
 <div id="s6" class="screen">
-<h2>Waiting for your call...</h2>
+<h2 class="type">Waiting for your call...</h2>
 
 <div id="clock"></div>
 
 <p id="msg"></p>
 
-<p class="highlight">
-<strong>Keep in mind that I always think about you.</strong>
+<p style="font-size:1.4rem;margin-top:20px;">
+<strong>I always think about you.</strong>
 </p>
 
-<p class="signature">
-Regards,<br>
-Surya
+<p style="color:#e50914;font-weight:700;margin-top:15px;">
+Regards,<br>Surya
 </p>
 </div>
 
@@ -182,18 +204,31 @@ Surya
 
 let stage=0;
 
-/* START STORY + MUSIC */
+/* UNLOCK */
+function unlock(){
+let p=document.getElementById("pass").value.trim().toLowerCase();
+
+if(p==="honey"){
+document.getElementById("login").style.display="none";
+document.getElementById("p0").classList.add("active");
+
+/* 🎧 MUSIC START */
+document.getElementById("music").src =
+"https://www.youtube.com/embed/4N3N1MlvVc4?autoplay=1&loop=1&playlist=4N3N1MlvVc4";
+}
+else{
+alert("Wrong password ❤️ hint: Honey");
+}
+}
+
+/* START STORY */
 function start(){
 document.getElementById("p0").style.display="none";
 document.getElementById("s1").classList.add("active");
 stage=1;
-
-/* 🎧 music starts AFTER user interaction */
-document.getElementById("music").src =
-"https://www.youtube.com/embed/4N3N1MlvVc4?autoplay=1&loop=1&playlist=4N3N1MlvVc4";
 }
 
-/* NEXT STAGE */
+/* NEXT */
 function next(n){
 document.getElementById("s"+stage).style.display="none";
 stage=n+1;
@@ -204,9 +239,8 @@ startClock();
 }
 }
 
-/* LIVE INDIA CLOCK */
+/* CLOCK */
 function startClock(){
-
 function update(){
 let now=new Date();
 let opt={timeZone:"Asia/Kolkata",hour:"2-digit",minute:"2-digit",second:"2-digit"};
