@@ -11,85 +11,115 @@
 body{
     margin:0;
     font-family:'Aptos',sans-serif;
+    background:#05060a;
     color:white;
-    background:#05070f;
     overflow-x:hidden;
 }
 
-/* 🌌 Aurora */
+/* 🌌 CINEMATIC AURORA LAYERS */
 .aurora{
     position:fixed;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    z-index:-2;
+    width:200%;
+    height:200%;
+    top:-50%;
+    left:-50%;
+    z-index:-3;
+
     background:
-        radial-gradient(circle at 20% 20%, rgba(0,255,255,0.35), transparent 45%),
-        radial-gradient(circle at 80% 30%, rgba(138,43,226,0.35), transparent 45%),
-        radial-gradient(circle at 50% 80%, rgba(0,255,150,0.30), transparent 45%),
-        radial-gradient(circle at 70% 70%, rgba(0,150,255,0.25), transparent 50%);
-    animation:moveAurora 10s infinite alternate ease-in-out;
-    filter: blur(18px);
+        radial-gradient(circle at 20% 30%, rgba(0,255,200,0.25), transparent 40%),
+        radial-gradient(circle at 60% 20%, rgba(120,80,255,0.25), transparent 45%),
+        radial-gradient(circle at 80% 70%, rgba(0,150,255,0.20), transparent 45%),
+        radial-gradient(circle at 30% 80%, rgba(0,255,120,0.18), transparent 50%);
+
+    animation:auroraMove 14s infinite alternate ease-in-out;
+    filter: blur(45px) saturate(160%);
 }
 
-@keyframes moveAurora{
-    0%{transform:translateY(0) scale(1);}
-    100%{transform:translateY(-35px) scale(1.1);}
+@keyframes auroraMove{
+    0%{transform:translate(0,0) scale(1);}
+    100%{transform:translate(90px,-70px) scale(1.2);}
 }
 
+/* dark cinematic vignette */
 .overlay{
     position:fixed;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.25);
-    z-index:-1;
+    background:radial-gradient(circle, rgba(0,0,0,0.2), rgba(0,0,0,0.85));
+    z-index:-2;
 }
 
-/* 🌐 Full page premium layout */
+/* 🎬 INTRO FADE (Netflix style) */
+.intro{
+    position:fixed;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:2rem;
+    font-weight:600;
+    background:#05060a;
+    z-index:999;
+    animation:fadeOut 2.5s ease forwards;
+}
+
+@keyframes fadeOut{
+    0%{opacity:1;}
+    100%{opacity:0; visibility:hidden;}
+}
+
+/* 🌐 LAYOUT */
 section{
     width:100%;
     min-height:100vh;
-    padding:80px 8vw;
+    padding:60px 10vw;
     display:flex;
     flex-direction:column;
     justify-content:center;
 }
 
-/* ✨ Headings premium */
+/* 💎 GLASS CARD */
+.card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:20px;
+    padding:30px;
+    backdrop-filter: blur(12px);
+}
+
+/* 🧠 TYPOGRAPHY */
 h1{
-    font-size:4rem;
+    font-size:4.8rem;
+    margin:0 0 10px 0;
     font-weight:700;
-    margin:0 0 20px 0;
-    letter-spacing:1px;
 }
 
 h2{
     font-size:2.5rem;
+    margin:0 0 10px 0;
     font-weight:700;
-    margin-bottom:20px;
 }
 
 p{
-    font-size:1.3rem;
-    line-height:2;
+    font-size:1.25rem;
+    line-height:1.9;
     font-weight:300;
-    max-width:900px;
 }
 
-/* Button */
+/* 🔘 BUTTON */
 .btn{
     margin-top:25px;
     padding:14px 34px;
     border:none;
     border-radius:40px;
-    background:#ff4d6d;
+    background:linear-gradient(90deg,#ff4d6d,#ff7a8a);
     color:white;
     font-size:16px;
     cursor:pointer;
 }
 
-/* Input */
+/* INPUT */
 input{
     padding:14px;
     width:260px;
@@ -97,52 +127,41 @@ input{
     border:none;
     text-align:center;
     font-size:16px;
+    margin-top:10px;
 }
 
-/* Pages */
+/* PAGES */
 .page{display:none;}
 .active{display:block;}
 
-/* Unlock animation */
+/* UNLOCK */
 .hidden{display:none;}
-.show{
-    display:block !important;
-    margin-top:20px;
-    animation:fade 1s ease;
-}
+.show{display:block; animation:fade 1s ease;}
 
 @keyframes fade{
-    from{opacity:0;}
-    to{opacity:1;}
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
 }
 
-/* Countdown */
+/* COUNTDOWN */
 #countdown{
     font-size:4rem;
     font-weight:700;
     color:#00ffd5;
-    margin-top:20px;
 }
 
-/* Typewriter */
-.typing{
-    overflow:hidden;
-    border-right:2px solid white;
-    white-space:nowrap;
-    width:0;
-    animation:typing 3.5s steps(50,end) forwards, blink 0.7s infinite;
+/* 💓 HEARTBEAT EFFECT */
+.heartbeat{
+    animation:beat 1s infinite;
 }
 
-@keyframes typing{
-    from{width:0;}
-    to{width:100%;}
+@keyframes beat{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.05);}
+    100%{transform:scale(1);}
 }
 
-@keyframes blink{
-    50%{border-color:transparent;}
-}
-
-/* Hearts */
+/* HEARTS */
 .heart{
     position:fixed;
     top:-10px;
@@ -153,56 +172,66 @@ input{
 @keyframes fall{
     to{transform:translateY(110vh);}
 }
+
+/* ✍️ TYPEWRITER */
+.typing{
+    overflow:hidden;
+    white-space:nowrap;
+    border-right:2px solid white;
+    width:0;
+    animation:typing 3.5s steps(60,end) forwards, blink 0.7s infinite;
+}
+
+@keyframes typing{
+    from{width:0;}
+    to{width:100%;}
+}
+
+@keyframes blink{
+    50%{border-color:transparent;}
+}
 </style>
 </head>
 
 <body>
 
+<!-- 🌌 AURORA -->
 <div class="aurora"></div>
 <div class="overlay"></div>
 
+<!-- 🎬 INTRO -->
+<div class="intro">Loading Love Story...</div>
+
+<!-- 🎵 MUSIC -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/1ZYbU82GVz4?autoplay=1&loop=1&playlist=1ZYbU82GVz4"
+allow="autoplay">
+</iframe>
+
 <!-- PAGE 1 -->
 <div id="page1" class="page active">
-
 <section>
+<div class="card heartbeat">
 <h1>For Honey ❤️</h1>
 <p class="typing">
-This is not a gift. It is a feeling I could not express in words alone.
+This is not a website. It is a feeling I could not hold inside anymore.
 </p>
-
-<button class="btn" onclick="go('page1','page2')">Enter</button>
+<button class="btn" onclick="go()">Begin</button>
+</div>
 </section>
-
 </div>
 
 <!-- PAGE 2 -->
 <div id="page2" class="page">
-
 <section>
+<div class="card">
+
 <h2>Our Story</h2>
 <p>
-We met on Bumble by accident, but nothing about us ever felt accidental.  
-From the beginning, it felt like something already written.
+We met on Bumble by accident, but nothing after that ever felt accidental.
+It felt like something already written long before we spoke.
 </p>
-</section>
 
-<section>
-<h2>What I Feel</h2>
-<p>
-You are honest, real, emotional, and strong in your own way.  
-Even your anger feels like love because it comes from care.
-</p>
-</section>
-
-<section>
-<h2>What I Want You to Know</h2>
-<p>
-I may not always understand your feelings instantly, but I never ignore them.  
-I am learning you, every single day.
-</p>
-</section>
-
-<section>
 <h2>Unlock</h2>
 
 <input type="password" id="pass" placeholder="Hint: my name for you ❤️">
@@ -211,39 +240,41 @@ I am learning you, every single day.
 <button class="btn" onclick="check()">Unlock</button>
 
 <div id="secret" class="hidden">
-<p>It worked. I am closer to you than distance can explain.</p>
+<p>It worked. You are not far from me. You never really were.</p>
 </div>
 
+</div>
 </section>
-
 </div>
 
 <!-- PAGE 3 -->
 <div id="page3" class="page">
-
 <section>
+<div class="card heartbeat">
+
 <h1>I am always next to you ❤️</h1>
 
 <div id="countdown">5</div>
 
 <p id="finalMsg"></p>
-</section>
 
+</div>
+</section>
 </div>
 
 <script>
 
-let started = false;
+let locked=false;
 
-function go(hide, show){
-    document.getElementById(hide).style.display="none";
-    document.getElementById(show).classList.add("active");
+function go(){
+    document.getElementById("page1").style.display="none";
+    document.getElementById("page2").classList.add("active");
 }
 
 function check(){
-    const input = document.getElementById("pass").value.trim().toLowerCase();
+    const input=document.getElementById("pass").value.trim().toLowerCase();
 
-    if(input === "honey"){
+    if(input==="honey"){
         document.getElementById("secret").classList.remove("hidden");
         document.getElementById("secret").classList.add("show");
 
@@ -251,30 +282,30 @@ function check(){
             document.getElementById("page2").style.display="none";
             document.getElementById("page3").classList.add("active");
 
-            if(!started){
+            if(!locked){
+                locked=true;
                 startCountdown();
-                started = true;
             }
-
         },1200);
+
     } else {
         alert("Try again ❤️");
     }
 }
 
 function startCountdown(){
-    let count = 5;
-    const el = document.getElementById("countdown");
-    const msg = document.getElementById("finalMsg");
+    let count=5;
+    const el=document.getElementById("countdown");
+    const msg=document.getElementById("finalMsg");
 
-    let timer = setInterval(()=>{
+    let timer=setInterval(()=>{
         count--;
-        el.innerHTML = count;
+        el.innerHTML=count;
 
-        if(count === 0){
+        if(count<=0){
             clearInterval(timer);
             el.style.display="none";
-            msg.innerHTML = "I am always next to you ❤️";
+            msg.innerHTML="I am always next to you ❤️";
         }
     },600);
 }
