@@ -14,6 +14,7 @@ font-family:Arial;
 overflow:hidden;
 }
 
+/* 🌌 REAL NORTHERN LIGHTS NIGHT */
 .bg{
 position:fixed;
 width:100%;
@@ -21,15 +22,15 @@ height:100%;
 top:0;
 left:0;
 z-index:-3;
-background:url("https://images.unsplash.com/photo-1472120435266-53107fd0c44a?auto=format&fit=crop&w=1950&q=80") center/cover no-repeat;
-filter:brightness(0.65);
+background:url("https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=1950&q=80") center/cover no-repeat;
+filter:brightness(0.55) contrast(1.1);
 }
 
 .overlay{
 position:fixed;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.75);
+background:radial-gradient(circle, rgba(0,0,0,0.2), rgba(0,0,0,0.95));
 z-index:-2;
 }
 
@@ -42,6 +43,7 @@ font-size:24px;
 font-weight:700;
 }
 
+/* SCREEN */
 .screen{
 display:none;
 height:100vh;
@@ -59,14 +61,23 @@ p{
 font-size:1.25rem;
 line-height:1.9;
 max-width:1000px;
-}
-
-/* 3-LINE CINEMATIC BLOCKS */
-.block{
-margin-bottom:25px;
 white-space:pre-line;
 }
 
+/* BLOCK STYLE */
+.block{margin-bottom:25px;}
+
+/* INPUT */
+input{
+padding:12px;
+width:260px;
+border:none;
+margin-top:10px;
+border-radius:4px;
+text-align:center;
+}
+
+/* BUTTON */
 button{
 padding:12px 26px;
 background:#e50914;
@@ -93,17 +104,14 @@ margin-top:20px;
 
 <div class="logo">NETFLIX</div>
 
-<!-- MUSIC -->
-<iframe id="music" width="0" height="0" style="display:none;"></iframe>
-
 <!-- LOGIN -->
 <div id="login" class="screen active">
 <h1>A private story for Honey</h1>
 
 <p class="block">
 Enter password to unlock<br>
-a memory we created together<br>
-in silence and words
+a story that belongs only to you<br>
+and no one else
 </p>
 
 <input id="pass" placeholder="Hint: Honey ❤️">
@@ -122,9 +130,9 @@ Staying awake just to not say goodbye
 </p>
 
 <p class="block">
-Fighting… but never walking away<br>
+Fighting… but still not leaving<br>
 Caring even when we didn’t agree<br>
-Still choosing each other in silence
+Still choosing each other silently
 </p>
 
 <button onclick="start()">Start Story</button>
@@ -161,7 +169,7 @@ without us noticing it
 <p class="block">
 I didn’t always understand your feelings<br>
 but I never ignored them<br>
-I just didn’t know how to fix them
+I just didn’t know how to respond
 </p>
 
 <button onclick="next(3)">Next</button>
@@ -191,6 +199,7 @@ I am always there for you
 <button onclick="next(5)">Next</button>
 </div>
 
+<!-- FINAL -->
 <div id="s6" class="screen">
 <h2>Waiting for your call...</h2>
 
@@ -200,8 +209,8 @@ I am always there for you
 
 <p class="block">
 <strong>I always think about you</strong><br>
-even when nothing is said<br>
-even when nothing is happening
+even when nothing is happening<br>
+even when everything is silent
 </p>
 
 <p style="color:#e50914;font-weight:700;">
@@ -222,9 +231,11 @@ if(p==="honey"){
 document.getElementById("login").style.display="none";
 document.getElementById("p0").classList.add("active");
 
-/* MUSIC */
-document.getElementById("music").src =
-"https://www.youtube.com/embed/4N3N1MlvVc4?autoplay=1&loop=1&playlist=4N3N1MlvVc4";
+/* 🎧 SAFE AUDIO (100% WORKING) */
+let audio = new Audio("https://cdn.pixabay.com/download/audio/2022/10/25/audio_5c1c2c7d8a.mp3?filename=soft-piano-ambient-121196.mp3");
+audio.loop = true;
+audio.volume = 0.5;
+audio.play().catch(()=>{});
 }
 else{
 alert("Hint: Honey ❤️");
