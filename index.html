@@ -54,14 +54,22 @@ input{
     margin-top:10px;
     border-radius:10px;
     border:none;
+    text-align:center;
 }
 
-.hidden{display:none;}
+.hidden{
+    display:none;
+}
 
-.final{
-    margin-top:50px;
-    font-size:18px;
-    font-style:italic;
+.show{
+    display:block !important;
+    margin-top:20px;
+    animation: fade 0.6s ease-in-out;
+}
+
+@keyframes fade{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
 }
 
 .hint{
@@ -80,6 +88,12 @@ input{
 @keyframes fall{
     to{transform:translateY(110vh);}
 }
+
+.final{
+    margin-top:50px;
+    font-size:18px;
+    font-style:italic;
+}
 </style>
 </head>
 
@@ -97,8 +111,8 @@ Enter
 <section id="story">
 <h2>Our Story</h2>
 <p>
-We met on Bumble by accident. But from day one, it never felt casual.
-We talked about marriage, future, and life — not temporary things.
+We met on Bumble by accident. From day one, it never felt casual — only real.
+We talked about marriage, future, and life.
 </p>
 </section>
 
@@ -137,7 +151,7 @@ Hint: Only I call you this name 😉
 
 <button class="btn" onclick="check()">Unlock</button>
 
-<div id="secret" class="hidden" style="margin-top:20px;">
+<div id="secret" class="hidden">
 <p>
 A surprise is coming…  
 I won’t tell you when.  
@@ -157,10 +171,12 @@ And I would choose you again every single time.
 
 <script>
 function check(){
-    let p = document.getElementById("pass").value.trim().toLowerCase();
+    const input = document.getElementById("pass").value.trim().toLowerCase();
+    const secret = document.getElementById("secret");
 
-    if(p === "honey"){
-        document.getElementById("secret").classList.remove("hidden");
+    if(input === "honey"){
+        secret.classList.remove("hidden");
+        secret.classList.add("show");
     } else {
         alert("Wrong password ❤️ Try again");
     }
@@ -174,7 +190,7 @@ setInterval(()=>{
     heart.style.fontSize=(Math.random()*20+10)+"px";
     document.body.appendChild(heart);
     setTimeout(()=>heart.remove(),6000);
-},400);
+},500);
 </script>
 
 </body>
