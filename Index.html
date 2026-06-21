@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Honey ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#0f172a,#1e293b);
+    color:white;
+}
+
+section{
+    padding:60px 20px;
+    text-align:center;
+}
+
+h1,h2{
+    margin-bottom:20px;
+}
+
+p{
+    max-width:700px;
+    margin:auto;
+    line-height:1.8;
+}
+
+.btn{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:#ff4d6d;
+    color:white;
+    font-size:16px;
+}
+
+.card{
+    background:rgba(255,255,255,0.1);
+    margin:10px;
+    padding:20px;
+    border-radius:15px;
+    display:inline-block;
+    width:250px;
+}
+
+input{
+    padding:10px;
+    width:200px;
+    margin-top:10px;
+}
+
+.hidden{display:none;}
+
+.final{
+    margin-top:50px;
+    font-size:18px;
+    font-style:italic;
+}
+
+.heart{
+    position:fixed;
+    top:-10px;
+    color:#ff4d6d;
+    animation:fall 6s linear infinite;
+}
+
+@keyframes fall{
+    to{transform:translateY(110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<section>
+<h1>For Honey ❤️</h1>
+<p>This is not a gift. This is a piece of my heart built into a website.</p>
+<button class="btn" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">
+Enter
+</button>
+</section>
+
+<section id="story">
+<h2>Our Story</h2>
+<p>
+We met on Bumble by accident.  
+But from day one, we weren’t talking like strangers… we were talking like something real.
+Marriage, future, life — not casual things.
+</p>
+</section>
+
+<section>
+<h2>What I Love About You</h2>
+
+<div class="card">Your honesty</div>
+<div class="card">Your kindness</div>
+<div class="card">Your cute anger</div>
+<div class="card">Your strong character</div>
+<div class="card">Your beautiful heart</div>
+<div class="card">Your smile</div>
+
+</section>
+
+<section>
+<h2>What I Want to Say</h2>
+<p>
+I know I don’t always understand your feelings properly.  
+But I am learning because you matter to me more than anything.
+</p>
+</section>
+
+<section>
+<h2>Secret Page</h2>
+
+<p>Enter password</p>
+<input type="password" id="pass">
+<br>
+<button class="btn" onclick="check()">Unlock</button>
+
+<div id="secret" class="hidden">
+<p>
+A surprise is coming…  
+I won’t tell you when.  
+But I am already on my way to you ❤️
+</p>
+</div>
+</section>
+
+<section class="final">
+<p>
+Of all the people I could have met… I met you.  
+And I would choose you again every single time.
+</p>
+<h3>— Surya ❤️</h3>
+</section>
+
+<script>
+function check(){
+    let p=document.getElementById("pass").value;
+    if(p==="honey"){
+        document.getElementById("secret").classList.remove("hidden");
+    }else{
+        alert("Wrong password ❤️");
+    }
+}
+
+setInterval(()=>{
+    let heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*20+10)+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+},400);
+</script>
+
+</body>
+</html>
