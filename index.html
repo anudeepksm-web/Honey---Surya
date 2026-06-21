@@ -6,17 +6,17 @@
 <title>For Honey ❤️</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Aptos:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aptos:wght@300;400;600;700&display=swap');
 
 body{
     margin:0;
-    font-family: 'Aptos', sans-serif;
+    font-family:'Aptos',sans-serif;
     color:white;
+    background:#05070f;
     overflow-x:hidden;
-    background:#000;
 }
 
-/* 🌌 Aurora Background */
+/* 🌌 Aurora */
 .aurora{
     position:fixed;
     width:100%;
@@ -24,70 +24,87 @@ body{
     top:0;
     left:0;
     z-index:-2;
-    background: radial-gradient(circle at 20% 20%, #2ef7ff33, transparent 40%),
-                radial-gradient(circle at 80% 30%, #8a2be233, transparent 40%),
-                radial-gradient(circle at 50% 80%, #00ffb333, transparent 40%);
+    background:
+        radial-gradient(circle at 20% 20%, rgba(0,255,255,0.35), transparent 45%),
+        radial-gradient(circle at 80% 30%, rgba(138,43,226,0.35), transparent 45%),
+        radial-gradient(circle at 50% 80%, rgba(0,255,150,0.30), transparent 45%),
+        radial-gradient(circle at 70% 70%, rgba(0,150,255,0.25), transparent 50%);
     animation:moveAurora 10s infinite alternate ease-in-out;
-    filter: blur(35px);
+    filter: blur(18px);
 }
 
 @keyframes moveAurora{
-    0%{transform:translateY(0px) scale(1);}
-    100%{transform:translateY(-40px) scale(1.15);}
+    0%{transform:translateY(0) scale(1);}
+    100%{transform:translateY(-35px) scale(1.1);}
 }
 
 .overlay{
     position:fixed;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.55);
+    background:rgba(0,0,0,0.25);
     z-index:-1;
 }
 
+/* 🌐 Full page premium layout */
 section{
-    padding:80px 20px;
-    text-align:center;
+    width:100%;
+    min-height:100vh;
+    padding:80px 8vw;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
 }
 
+/* ✨ Headings premium */
 h1{
-    font-size:3rem;
-    font-weight:600;
+    font-size:4rem;
+    font-weight:700;
+    margin:0 0 20px 0;
+    letter-spacing:1px;
 }
 
 h2{
-    font-weight:600;
+    font-size:2.5rem;
+    font-weight:700;
+    margin-bottom:20px;
 }
 
 p{
-    max-width:720px;
-    margin:auto;
-    line-height:1.9;
-    font-size:1.1rem;
+    font-size:1.3rem;
+    line-height:2;
     font-weight:300;
+    max-width:900px;
 }
 
+/* Button */
 .btn{
-    margin-top:20px;
-    padding:12px 30px;
+    margin-top:25px;
+    padding:14px 34px;
     border:none;
-    border-radius:30px;
+    border-radius:40px;
     background:#ff4d6d;
     color:white;
     font-size:16px;
     cursor:pointer;
 }
 
+/* Input */
 input{
-    padding:12px;
-    width:220px;
-    border-radius:10px;
+    padding:14px;
+    width:260px;
+    border-radius:12px;
     border:none;
     text-align:center;
-    font-family:'Aptos',sans-serif;
+    font-size:16px;
 }
 
-.hidden{display:none;}
+/* Pages */
+.page{display:none;}
+.active{display:block;}
 
+/* Unlock animation */
+.hidden{display:none;}
 .show{
     display:block !important;
     margin-top:20px;
@@ -101,13 +118,31 @@ input{
 
 /* Countdown */
 #countdown{
-    font-size:3rem;
-    margin-top:20px;
-    font-weight:600;
+    font-size:4rem;
+    font-weight:700;
     color:#00ffd5;
+    margin-top:20px;
 }
 
-/* Heart animation */
+/* Typewriter */
+.typing{
+    overflow:hidden;
+    border-right:2px solid white;
+    white-space:nowrap;
+    width:0;
+    animation:typing 3.5s steps(50,end) forwards, blink 0.7s infinite;
+}
+
+@keyframes typing{
+    from{width:0;}
+    to{width:100%;}
+}
+
+@keyframes blink{
+    50%{border-color:transparent;}
+}
+
+/* Hearts */
 .heart{
     position:fixed;
     top:-10px;
@@ -118,10 +153,6 @@ input{
 @keyframes fall{
     to{transform:translateY(110vh);}
 }
-
-/* Pages */
-.page{display:none;}
-.active{display:block;}
 </style>
 </head>
 
@@ -130,22 +161,16 @@ input{
 <div class="aurora"></div>
 <div class="overlay"></div>
 
-<iframe width="0" height="0"
-src="https://www.youtube.com/embed/1ZYbU82GVz4?autoplay=1&loop=1&playlist=1ZYbU82GVz4"
-allow="autoplay">
-</iframe>
-
 <!-- PAGE 1 -->
 <div id="page1" class="page active">
 
 <section>
 <h1>For Honey ❤️</h1>
-<p>
-This is not something I built as a gift.  
-It is something I built because I wanted you to feel how much you mean to me.
+<p class="typing">
+This is not a gift. It is a feeling I could not express in words alone.
 </p>
 
-<button class="btn" onclick="nextPage('page1','page2')">Enter</button>
+<button class="btn" onclick="go('page1','page2')">Enter</button>
 </section>
 
 </div>
@@ -157,38 +182,36 @@ It is something I built because I wanted you to feel how much you mean to me.
 <h2>Our Story</h2>
 <p>
 We met on Bumble by accident, but nothing about us ever felt accidental.  
-From the beginning, we spoke about life, marriage, and the future as if we already knew we were meant to find each other.
+From the beginning, it felt like something already written.
 </p>
 </section>
 
 <section>
-<h2>What I Feel for You</h2>
+<h2>What I Feel</h2>
 <p>
-I love your honesty, your kindness, your soft anger, and the way you care deeply even when you are upset.  
-You are one of the most real people I have ever met.
+You are honest, real, emotional, and strong in your own way.  
+Even your anger feels like love because it comes from care.
 </p>
 </section>
 
 <section>
 <h2>What I Want You to Know</h2>
 <p>
-I may not always understand your feelings immediately, but I am learning every day because you matter to me more than anything else.
+I may not always understand your feelings instantly, but I never ignore them.  
+I am learning you, every single day.
 </p>
 </section>
 
 <section>
 <h2>Unlock</h2>
 
-<input type="password" id="pass" placeholder="Hint: my name for you">
+<input type="password" id="pass" placeholder="Hint: my name for you ❤️">
 <br>
 
 <button class="btn" onclick="check()">Unlock</button>
 
 <div id="secret" class="hidden">
-<p>
-It worked.  
-I just want you to know that I am not going anywhere. I am already closer to you than you think.
-</p>
+<p>It worked. I am closer to you than distance can explain.</p>
 </div>
 
 </section>
@@ -203,16 +226,16 @@ I just want you to know that I am not going anywhere. I am already closer to you
 
 <div id="countdown">5</div>
 
-<p>
-No matter the distance, nothing changes what I feel for you.
-</p>
+<p id="finalMsg"></p>
 </section>
 
 </div>
 
 <script>
 
-function nextPage(hide, show){
+let started = false;
+
+function go(hide, show){
     document.getElementById(hide).style.display="none";
     document.getElementById(show).classList.add("active");
 }
@@ -222,13 +245,18 @@ function check(){
 
     if(input === "honey"){
         document.getElementById("secret").classList.remove("hidden");
+        document.getElementById("secret").classList.add("show");
 
         setTimeout(()=>{
             document.getElementById("page2").style.display="none";
             document.getElementById("page3").classList.add("active");
-            startCountdown();
-        },1500);
 
+            if(!started){
+                startCountdown();
+                started = true;
+            }
+
+        },1200);
     } else {
         alert("Try again ❤️");
     }
@@ -237,6 +265,7 @@ function check(){
 function startCountdown(){
     let count = 5;
     const el = document.getElementById("countdown");
+    const msg = document.getElementById("finalMsg");
 
     let timer = setInterval(()=>{
         count--;
@@ -244,20 +273,21 @@ function startCountdown(){
 
         if(count === 0){
             clearInterval(timer);
-            el.innerHTML = "I am always next to you ❤️";
+            el.style.display="none";
+            msg.innerHTML = "I am always next to you ❤️";
         }
-    },500);
+    },600);
 }
 
 /* hearts */
 setInterval(()=>{
-    let heart=document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML="❤️";
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(Math.random()*20+10)+"px";
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),6000);
+    let h=document.createElement("div");
+    h.classList.add("heart");
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(Math.random()*20+10)+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
 },500);
 
 </script>
