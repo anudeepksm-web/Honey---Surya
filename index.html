@@ -14,6 +14,7 @@ font-family:Arial;
 overflow:hidden;
 }
 
+/* 🌌 NORTHERN LIGHTS */
 .bg{
 position:fixed;
 width:100%;
@@ -29,10 +30,11 @@ filter:brightness(0.55);
 position:fixed;
 width:100%;
 height:100%;
-background:radial-gradient(circle, rgba(0,0,0,0.2), rgba(0,0,0,0.95));
+background:radial-gradient(circle, rgba(0,0,0,0.25), rgba(0,0,0,0.95));
 z-index:-2;
 }
 
+/* LOGO */
 .logo{
 position:fixed;
 top:20px;
@@ -42,7 +44,7 @@ font-size:24px;
 font-weight:700;
 }
 
-/* SCREEN */
+/* SCREENS */
 .screen{
 display:none;
 height:100vh;
@@ -53,6 +55,7 @@ justify-content:center;
 
 .active{display:flex;}
 
+/* TEXT */
 h1{font-size:4rem;margin:0 0 20px 0;}
 h2{font-size:2.2rem;margin:0 0 20px 0;}
 
@@ -63,20 +66,20 @@ max-width:1000px;
 white-space:normal;
 }
 
-/* ⌨️ TYPEWRITER FIX (PROPER VERSION) */
+/* ⌨️ TYPEWRITER SAFE */
 .type{
 display:block;
 overflow:hidden;
 border-right:2px solid white;
 white-space:nowrap;
 width:0;
-animation:typing 2.8s steps(60,end) forwards, blink 0.7s infinite;
-margin-bottom:12px;
+animation:typing 2.6s steps(60,end) forwards, blink 0.7s infinite;
+margin-bottom:10px;
 }
 
 @keyframes typing{
-from{width:0;}
-to{width:100%;}
+from{width:0}
+to{width:100%}
 }
 
 @keyframes blink{
@@ -110,7 +113,7 @@ margin-top:20px;
 
 <div class="logo">NETFLIX</div>
 
-<!-- AUDIO (real working trigger) -->
+<!-- 🎧 AUDIO -->
 <audio id="bgm" loop>
 <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_5c1c2c7d8a.mp3?filename=soft-piano-ambient-121196.mp3" type="audio/mp3">
 </audio>
@@ -119,7 +122,7 @@ margin-top:20px;
 <div id="login" class="screen active">
 <h1 class="type">A private story for Honey</h1>
 
-<p>Enter password</p>
+<p>Enter password to unlock</p>
 
 <input id="pass" placeholder="Hint: Honey ❤️">
 <br>
@@ -188,7 +191,7 @@ Surya
 
 let stage=0;
 
-/* UNLOCK + AUDIO FIX */
+/* 🔐 UNLOCK + MUSIC FIX */
 function unlock(){
 let p=document.getElementById("pass").value.trim().toLowerCase();
 
@@ -196,8 +199,9 @@ if(p==="honey"){
 document.getElementById("login").style.display="none";
 document.getElementById("p0").classList.add("active");
 
-/* 🎧 FIXED AUDIO START (must be user triggered) */
+/* 🎧 reliable start */
 let audio=document.getElementById("bgm");
+audio.currentTime=0;
 audio.play().catch(()=>{});
 }
 else{
