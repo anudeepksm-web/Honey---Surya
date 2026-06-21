@@ -14,7 +14,6 @@ font-family:Arial;
 overflow:hidden;
 }
 
-/* 🌌 REAL NORTHERN LIGHTS NIGHT */
 .bg{
 position:fixed;
 width:100%;
@@ -23,7 +22,7 @@ top:0;
 left:0;
 z-index:-3;
 background:url("https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=1950&q=80") center/cover no-repeat;
-filter:brightness(0.55) contrast(1.1);
+filter:brightness(0.55);
 }
 
 .overlay{
@@ -61,20 +60,27 @@ p{
 font-size:1.25rem;
 line-height:1.9;
 max-width:1000px;
-white-space:pre-line;
+white-space:normal;
 }
 
-/* BLOCK STYLE */
-.block{margin-bottom:25px;}
+/* ⌨️ TYPEWRITER FIX (PROPER VERSION) */
+.type{
+display:block;
+overflow:hidden;
+border-right:2px solid white;
+white-space:nowrap;
+width:0;
+animation:typing 2.8s steps(60,end) forwards, blink 0.7s infinite;
+margin-bottom:12px;
+}
 
-/* INPUT */
-input{
-padding:12px;
-width:260px;
-border:none;
-margin-top:10px;
-border-radius:4px;
-text-align:center;
+@keyframes typing{
+from{width:0;}
+to{width:100%;}
+}
+
+@keyframes blink{
+50%{border-color:transparent;}
 }
 
 /* BUTTON */
@@ -104,15 +110,16 @@ margin-top:20px;
 
 <div class="logo">NETFLIX</div>
 
+<!-- AUDIO (real working trigger) -->
+<audio id="bgm" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_5c1c2c7d8a.mp3?filename=soft-piano-ambient-121196.mp3" type="audio/mp3">
+</audio>
+
 <!-- LOGIN -->
 <div id="login" class="screen active">
-<h1>A private story for Honey</h1>
+<h1 class="type">A private story for Honey</h1>
 
-<p class="block">
-Enter password to unlock<br>
-a story that belongs only to you<br>
-and no one else
-</p>
+<p>Enter password</p>
 
 <input id="pass" placeholder="Hint: Honey ❤️">
 <br>
@@ -121,97 +128,55 @@ and no one else
 
 <!-- PREVIEW -->
 <div id="p0" class="screen">
-<h1>Before the story begins…</h1>
+<h1 class="type">Before the story begins…</h1>
 
-<p class="block">
-Talking about forever from day one<br>
-Laughing at things only we understood<br>
-Staying awake just to not say goodbye
-</p>
-
-<p class="block">
-Fighting… but still not leaving<br>
-Caring even when we didn’t agree<br>
-Still choosing each other silently
-</p>
+<p class="type">Talking about forever from day one</p>
+<p class="type">Laughing at things only we understood</p>
+<p class="type">Staying awake just to not say goodbye</p>
+<p class="type">Fighting… but still not leaving</p>
 
 <button onclick="start()">Start Story</button>
 </div>
 
 <!-- STAGES -->
 <div id="s1" class="screen">
-<h1>The moment where my life changed</h1>
-
-<p class="block">
-I didn’t realize it then<br>
-but meeting you changed everything<br>
-I thought I knew about life
-</p>
-
+<h1 class="type">The moment where my life changed</h1>
+<p>I didn’t realize it then… but meeting you changed everything I knew about life.</p>
 <button onclick="next(1)">Next</button>
 </div>
 
 <div id="s2" class="screen">
-<h2>What We Became</h2>
-
-<p class="block">
-Some conversations don’t feel like talks<br>
-they feel like home forming slowly<br>
-without us noticing it
-</p>
-
+<h2 class="type">What We Became</h2>
+<p>Some conversations don’t feel like talks… they feel like home forming slowly.</p>
 <button onclick="next(2)">Next</button>
 </div>
 
 <div id="s3" class="screen">
-<h2>Misunderstanding</h2>
-
-<p class="block">
-I didn’t always understand your feelings<br>
-but I never ignored them<br>
-I just didn’t know how to respond
-</p>
-
+<h2 class="type">Misunderstanding</h2>
+<p>I didn’t always understand your feelings… but I never ignored them.</p>
 <button onclick="next(3)">Next</button>
 </div>
 
 <div id="s4" class="screen">
-<h2>Distance</h2>
-
-<p class="block">
-Even silence feels different with you<br>
-because it still feels like you are here<br>
-just not speaking
-</p>
-
+<h2 class="type">Distance</h2>
+<p>Even silence feels different with you.</p>
 <button onclick="next(4)">Next</button>
 </div>
 
 <div id="s5" class="screen">
-<h2>Truth</h2>
-
-<p class="block">
-I am not perfect in love<br>
-but I am consistent in it<br>
-I am always there for you
-</p>
-
+<h2 class="type">Truth</h2>
+<p>I am not perfect. But I am consistent. I am always there for you.</p>
 <button onclick="next(5)">Next</button>
 </div>
 
-<!-- FINAL -->
 <div id="s6" class="screen">
-<h2>Waiting for your call...</h2>
+<h2 class="type">Waiting for your call...</h2>
 
 <div id="clock"></div>
 
 <p id="msg"></p>
 
-<p class="block">
-<strong>I always think about you</strong><br>
-even when nothing is happening<br>
-even when everything is silent
-</p>
+<p><strong>I always think about you.</strong></p>
 
 <p style="color:#e50914;font-weight:700;">
 Regards,<br>
@@ -223,7 +188,7 @@ Surya
 
 let stage=0;
 
-/* UNLOCK */
+/* UNLOCK + AUDIO FIX */
 function unlock(){
 let p=document.getElementById("pass").value.trim().toLowerCase();
 
@@ -231,10 +196,8 @@ if(p==="honey"){
 document.getElementById("login").style.display="none";
 document.getElementById("p0").classList.add("active");
 
-/* 🎧 SAFE AUDIO (100% WORKING) */
-let audio = new Audio("https://cdn.pixabay.com/download/audio/2022/10/25/audio_5c1c2c7d8a.mp3?filename=soft-piano-ambient-121196.mp3");
-audio.loop = true;
-audio.volume = 0.5;
+/* 🎧 FIXED AUDIO START (must be user triggered) */
+let audio=document.getElementById("bgm");
 audio.play().catch(()=>{});
 }
 else{
