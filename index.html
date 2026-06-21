@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Netflix Love Story</title>
+<title>Love Story</title>
 
 <style>
 body{
@@ -14,35 +14,27 @@ font-family:Arial;
 overflow:hidden;
 }
 
-/* 🎥 BACKGROUND */
-.video-bg{
+/* 🌌 BACKGROUND IMAGE */
+.bg{
 position:fixed;
 width:100%;
 height:100%;
 top:0;
 left:0;
 z-index:-3;
-}
-
-.video-bg iframe{
-position:absolute;
-top:50%;
-left:50%;
-width:150vw;
-height:150vh;
-transform:translate(-50%,-50%);
-pointer-events:none;
+background:url("https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?auto=format&fit=crop&w=1920&q=80") center/cover no-repeat;
+filter:brightness(0.7);
 }
 
 .overlay{
 position:fixed;
 width:100%;
 height:100%;
-background:radial-gradient(circle, rgba(0,0,0,0.2), rgba(0,0,0,0.95));
+background:radial-gradient(circle, rgba(0,0,0,0.2), rgba(0,0,0,0.92));
 z-index:-2;
 }
 
-/* NETFLIX HEADER */
+/* NETFLIX LOGO */
 .logo{
 position:fixed;
 top:20px;
@@ -57,7 +49,7 @@ letter-spacing:2px;
 .screen{
 display:none;
 height:100vh;
-padding:80px 10vw;
+padding:70px 10vw;
 flex-direction:column;
 justify-content:center;
 }
@@ -65,32 +57,23 @@ justify-content:center;
 .active{display:flex;}
 
 h1{font-size:4rem;margin:0;}
-h2{font-size:2.2rem;margin:0 0 10px 0;}
+h2{font-size:2.2rem;margin-bottom:10px;}
 
 p{
 font-size:1.2rem;
 line-height:1.8;
 max-width:850px;
-opacity:0.95;
 }
 
-/* BUTTONS */
-.controls{
-position:fixed;
-bottom:30px;
-right:30px;
-display:flex;
-gap:10px;
-}
-
+/* BUTTON */
 button{
-padding:12px 20px;
-border:none;
+padding:12px 26px;
 background:#e50914;
+border:none;
 color:white;
 cursor:pointer;
 border-radius:4px;
-font-size:14px;
+margin-top:15px;
 }
 
 /* CLOCK */
@@ -99,128 +82,145 @@ font-size:3rem;
 color:#00ffd5;
 margin-top:20px;
 }
+
+/* FINAL TEXT */
+.highlight{
+font-size:1.4rem;
+font-weight:700;
+color:white;
+margin-top:20px;
+}
+
+.signature{
+margin-top:20px;
+font-size:1.2rem;
+color:#e50914;
+font-weight:700;
+}
 </style>
 </head>
 
 <body>
 
-<!-- 🎥 BACKGROUND (FIXED STABLE) -->
-<div class="video-bg">
-<iframe
-src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1"
-frameborder="0"
-allow="autoplay">
-</iframe>
-</div>
-
+<!-- 🌌 BACKGROUND -->
+<div class="bg"></div>
 <div class="overlay"></div>
 
 <div class="logo">NETFLIX</div>
 
-<!-- 🎬 STAGES -->
+<!-- 🎧 MUSIC (hidden, starts on click) -->
+<iframe id="music" width="0" height="0" style="display:none;"></iframe>
 
-<div id="s1" class="screen active">
-<h1>Stage 1 — The Accident</h1>
-<p>We didn’t plan to meet. But somehow, we still spoke like it mattered from the first message.</p>
+<!-- PREVIEW -->
+<div id="p0" class="screen active">
+<h1>Before the story begins…</h1>
+
+<p>
+• Talking about forever from day one<br>
+• Laughing at random things only we understood<br>
+• Staying awake just to not say goodbye<br>
+• Fighting… but still not letting go
+</p>
+
+<button onclick="start()">Start the Story</button>
 </div>
 
+<!-- STAGE 1 -->
+<div id="s1" class="screen">
+<h1>The moment where my life changed</h1>
+<p>I didn’t realize it then… but meeting you changed everything I thought I knew about life.</p>
+<button onclick="next(1)">Next</button>
+</div>
+
+<!-- STAGE 2 -->
 <div id="s2" class="screen">
-<h2>Stage 2 — Day 1 Forever Talk</h2>
-<p>We spoke about marriage, life, forever… before most people even understand each other.</p>
+<h2>What We Became</h2>
+<p>Some conversations don’t feel like conversations… they feel like home forming slowly.</p>
+<button onclick="next(2)">Next</button>
 </div>
 
+<!-- STAGE 3 -->
 <div id="s3" class="screen">
-<h2>Stage 3 — Becoming “Us”</h2>
-<p>You slowly became my routine. Not a habit… but something I looked forward to.</p>
+<h2>Misunderstanding</h2>
+<p>I didn’t always understand your feelings… but I never ignored them either.</p>
+<button onclick="next(3)">Next</button>
 </div>
 
+<!-- STAGE 4 -->
 <div id="s4" class="screen">
-<h2>Stage 4 — Misunderstanding</h2>
-<p>I didn’t always understand your feelings. But I never ignored them either.</p>
+<h2>Distance</h2>
+<p>Even silence feels different when it’s with you.</p>
+<button onclick="next(4)">Next</button>
 </div>
 
+<!-- STAGE 5 -->
 <div id="s5" class="screen">
-<h2>Stage 5 — Distance</h2>
-<p>Distance didn’t change anything… but silence sometimes did.</p>
-</div>
-
-<div id="s6" class="screen">
-<h2>Stage 6 — Truth</h2>
+<h2>Truth</h2>
 <p>I am not perfect. But I am consistent. I am always there for you.</p>
+<button onclick="next(5)">Next</button>
 </div>
 
-<div id="s7" class="screen">
-<h2>Waiting for you...</h2>
+<!-- FINAL -->
+<div id="s6" class="screen">
+<h2>Waiting for your call...</h2>
 
 <div id="clock"></div>
-<p id="msg"></p>
-</div>
 
-<!-- CONTROLS -->
-<div class="controls">
-<button onclick="prev()">Prev</button>
-<button onclick="next()">Next</button>
+<p id="msg"></p>
+
+<p class="highlight">
+<strong>Keep in mind that I always think about you.</strong>
+</p>
+
+<p class="signature">
+Regards,<br>
+Surya
+</p>
 </div>
 
 <script>
 
-let stage=1;
-let autoPaused=false;
-let autoTimer;
+let stage=0;
 
-/* SHOW STAGE */
-function show(n){
-document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
-document.getElementById("s"+n).classList.add("active");
-stage=n;
+/* START STORY + MUSIC */
+function start(){
+document.getElementById("p0").style.display="none";
+document.getElementById("s1").classList.add("active");
+stage=1;
 
-if(stage===7){
+/* 🎧 music starts AFTER user interaction */
+document.getElementById("music").src =
+"https://www.youtube.com/embed/4N3N1MlvVc4?autoplay=1&loop=1&playlist=4N3N1MlvVc4";
+}
+
+/* NEXT STAGE */
+function next(n){
+document.getElementById("s"+stage).style.display="none";
+stage=n+1;
+document.getElementById("s"+stage).classList.add("active");
+
+if(stage===6){
 startClock();
 }
 }
 
-/* NEXT / PREV */
-function next(){
-autoPaused=true;
-if(stage<7) show(stage+1);
-}
-
-function prev(){
-autoPaused=true;
-if(stage>1) show(stage-1);
-}
-
-/* AUTO FLOW (30s) */
-function autoFlow(){
-autoTimer=setInterval(()=>{
-if(!autoPaused){
-if(stage<7){
-show(stage+1);
-}
-}
-},30000);
-}
-
-/* CLOCK (INDIA TIME) */
+/* LIVE INDIA CLOCK */
 function startClock(){
+
 function update(){
 let now=new Date();
 let opt={timeZone:"Asia/Kolkata",hour:"2-digit",minute:"2-digit",second:"2-digit"};
 
-document.getElementById("clock").innerText=
-"India Time: "+new Intl.DateTimeFormat("en-IN",opt).format(now);
+document.getElementById("clock").innerText =
+"India Time: " + new Intl.DateTimeFormat("en-IN",opt).format(now);
 
-document.getElementById("msg").innerText=
+document.getElementById("msg").innerText =
 "I was waiting for your call… and I still am.";
 }
 
 update();
 setInterval(update,1000);
 }
-
-/* START */
-show(1);
-autoFlow();
 
 </script>
 
