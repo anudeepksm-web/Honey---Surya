@@ -14,7 +14,6 @@ font-family:Arial;
 overflow:hidden;
 }
 
-/* 🌌 NORTHERN LIGHTS */
 .bg{
 position:fixed;
 width:100%;
@@ -34,7 +33,6 @@ background:radial-gradient(circle, rgba(0,0,0,0.25), rgba(0,0,0,0.95));
 z-index:-2;
 }
 
-/* LOGO */
 .logo{
 position:fixed;
 top:20px;
@@ -44,7 +42,6 @@ font-size:24px;
 font-weight:700;
 }
 
-/* SCREENS */
 .screen{
 display:none;
 height:100vh;
@@ -55,7 +52,6 @@ justify-content:center;
 
 .active{display:flex;}
 
-/* TEXT */
 h1{font-size:4rem;margin:0 0 20px 0;}
 h2{font-size:2.2rem;margin:0 0 20px 0;}
 
@@ -66,7 +62,7 @@ max-width:1000px;
 white-space:normal;
 }
 
-/* ⌨️ TYPEWRITER SAFE */
+/* TYPEWRITER */
 .type{
 display:block;
 overflow:hidden;
@@ -103,6 +99,16 @@ font-size:3rem;
 color:#00ffd5;
 margin-top:20px;
 }
+
+/* INPUT */
+input{
+padding:12px;
+width:260px;
+border:none;
+border-radius:4px;
+text-align:center;
+margin-top:10px;
+}
 </style>
 </head>
 
@@ -113,8 +119,8 @@ margin-top:20px;
 
 <div class="logo">NETFLIX</div>
 
-<!-- 🎧 AUDIO -->
-<audio id="bgm" loop>
+<!-- 🎧 SINGLE MUSIC -->
+<audio id="bgm" loop preload="auto">
 <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_5c1c2c7d8a.mp3?filename=soft-piano-ambient-121196.mp3" type="audio/mp3">
 </audio>
 
@@ -124,7 +130,7 @@ margin-top:20px;
 
 <p>Enter password to unlock</p>
 
-<input id="pass" placeholder="Hint: Honey ❤️">
+<input id="pass" placeholder="Hint: my nickname for you ❤️">
 <br>
 <button onclick="unlock()">Unlock</button>
 </div>
@@ -191,7 +197,7 @@ Surya
 
 let stage=0;
 
-/* 🔐 UNLOCK + MUSIC FIX */
+/* 🔐 UNLOCK + MUSIC */
 function unlock(){
 let p=document.getElementById("pass").value.trim().toLowerCase();
 
@@ -199,13 +205,14 @@ if(p==="honey"){
 document.getElementById("login").style.display="none";
 document.getElementById("p0").classList.add("active");
 
-/* 🎧 reliable start */
+/* 🎧 single stable audio */
 let audio=document.getElementById("bgm");
 audio.currentTime=0;
+audio.volume=0.5;
 audio.play().catch(()=>{});
 }
 else{
-alert("Hint: Honey ❤️");
+alert("Hint: my nickname for you ❤️");
 }
 }
 
