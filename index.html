@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Honey ❤️</title>
+<title>Love Story</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Aptos:wght@300;400;600;700&display=swap');
@@ -11,77 +11,100 @@
 body{
     margin:0;
     font-family:'Aptos',sans-serif;
-    color:white;
-    overflow-x:hidden;
     background:black;
+    color:white;
+    overflow:hidden;
 }
 
-/* 🎥 VIDEO BACKGROUND */
+/* 🎥 BACKGROUND VIDEO */
 .video-bg{
     position:fixed;
-    top:0;
-    left:0;
     width:100%;
     height:100%;
+    top:0;
+    left:0;
     z-index:-3;
-    overflow:hidden;
 }
 
 .video-bg iframe{
     position:absolute;
     top:50%;
     left:50%;
-    width:120vw;
-    height:120vh;
+    width:130vw;
+    height:130vh;
     transform:translate(-50%,-50%);
     pointer-events:none;
 }
 
-/* 🌑 OVERLAY */
+/* 🌑 NETFLIX DARK OVERLAY */
 .overlay{
     position:fixed;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.55);
+    background:radial-gradient(circle, rgba(0,0,0,0.2), rgba(0,0,0,0.95));
     z-index:-2;
 }
 
-/* 🌐 LAYOUT */
-section{
-    min-height:100vh;
+/* 🎬 INTRO SCREEN (Netflix style) */
+.intro{
+    position:fixed;
+    width:100%;
+    height:100%;
     display:flex;
-    flex-direction:column;
     justify-content:center;
-    padding:60px 10vw;
+    align-items:center;
+    font-size:3rem;
+    font-weight:700;
+    letter-spacing:2px;
+    background:black;
+    animation:fadeOut 2.5s ease forwards;
+    z-index:999;
 }
 
-/* 💎 TYPOGRAPHY */
+@keyframes fadeOut{
+    0%{opacity:1;}
+    100%{opacity:0; visibility:hidden;}
+}
+
+/* 📺 SCREENS */
+.screen{
+    display:none;
+    height:100vh;
+    width:100%;
+    padding:60px 10vw;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.active{
+    display:flex;
+}
+
+/* 🎞️ NETFLIX TITLE STYLE */
 h1{
-    font-size:4.5rem;
-    margin:0 0 10px 0;
+    font-size:5rem;
+    margin:0;
     font-weight:700;
 }
 
 h2{
     font-size:2.5rem;
-    margin:0 0 10px 0;
-    font-weight:700;
+    margin-bottom:10px;
 }
 
 p{
-    font-size:1.25rem;
+    font-size:1.3rem;
     line-height:1.9;
     max-width:900px;
-    font-weight:300;
 }
 
 /* 🔘 BUTTON */
 button{
     margin-top:20px;
-    padding:14px 32px;
+    padding:14px 34px;
     border:none;
     border-radius:40px;
-    background:linear-gradient(90deg,#ff4d6d,#ff7a8a);
+    background:#e50914;
     color:white;
     font-size:16px;
     cursor:pointer;
@@ -91,183 +114,145 @@ button{
 input{
     padding:14px;
     width:260px;
-    border-radius:12px;
+    border-radius:10px;
     border:none;
     text-align:center;
-    font-size:16px;
-    margin-top:10px;
 }
 
-/* PAGES */
-.page{display:none;}
-.active{display:block;}
-
-/* UNLOCK */
-.hidden{display:none;}
-.show{
-    display:block !important;
-    margin-top:15px;
-    animation:fade 1s ease;
+/* 🎭 TYPE REVEAL */
+.fadeIn{
+    animation:fadeIn 1.2s ease;
 }
 
-@keyframes fade{
-    from{opacity:0; transform:translateY(10px);}
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(15px);}
     to{opacity:1; transform:translateY(0);}
 }
 
-/* COUNTDOWN */
-#countdown{
-    font-size:4rem;
-    font-weight:700;
+/* ⏳ COUNTDOWN */
+#count{
+    font-size:5rem;
     color:#00ffd5;
+    font-weight:700;
 }
 
-/* HEARTS */
+/* ❤️ HEARTS */
 .heart{
     position:fixed;
     top:-10px;
-    color:#ff4d6d;
+    color:red;
     animation:fall 6s linear;
 }
 
 @keyframes fall{
     to{transform:translateY(110vh);}
 }
-
-/* TYPE EFFECT */
-.typing{
-    overflow:hidden;
-    white-space:nowrap;
-    border-right:2px solid white;
-    width:0;
-    animation:typing 3.5s steps(60,end) forwards, blink 0.7s infinite;
-}
-
-@keyframes typing{
-    from{width:0;}
-    to{width:100%;}
-}
-
-@keyframes blink{
-    50%{border-color:transparent;}
-}
 </style>
 </head>
 
 <body>
 
-<!-- 🎥 NORTHERN LIGHTS VIDEO -->
+<!-- 🎥 BACKGROUND -->
 <div class="video-bg">
     <iframe
-        src="https://www.youtube.com/embed/1tNX7A0f-2A?autoplay=1&mute=1&loop=1&playlist=1tNX7A0f-2A&controls=0&showinfo=0&modestbranding=1"
+        src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=1&mute=1&loop=1&playlist=5qap5aO4i9A&controls=0&rel=0"
         frameborder="0"
-        allow="autoplay"
-    ></iframe>
+        allow="autoplay">
+    </iframe>
 </div>
 
 <div class="overlay"></div>
 
-<!-- PAGE 1 -->
-<div id="p1" class="page active">
-<section>
-<h1>For Honey ❤️</h1>
-<p class="typing">
-This is not a website. This is something I could not say directly.
-</p>
+<!-- 🎬 INTRO -->
+<div class="intro">NETFLIX PRESENTS</div>
 
-<button onclick="go()">Enter</button>
-</section>
+<!-- 🎞️ SCREEN 1 -->
+<div id="s1" class="screen active">
+<h1 class="fadeIn">For Honey ❤️</h1>
+<p class="fadeIn">A story that was never planned… but always meant.</p>
+<button onclick="startStory()">Play</button>
 </div>
 
-<!-- PAGE 2 -->
-<div id="p2" class="page">
-<section>
-<h2>Our Story</h2>
-<p>
-We met on Bumble by accident, but nothing after that ever felt accidental. It felt like we were meant to find each other.
+<!-- 🎞️ SCREEN 2 -->
+<div id="s2" class="screen">
+<h2>Episode 1: Us</h2>
+<p class="fadeIn">
+We met on Bumble by accident, but nothing after that ever felt accidental.
 </p>
 
 <h2>Unlock</h2>
 
 <input id="pass" placeholder="Hint: my name for you ❤️"/>
-<br/>
-
+<br>
 <button onclick="unlock()">Unlock</button>
 
-<p id="secret" style="display:none;">You are already very close to my heart.</p>
-</section>
+<p id="secret" style="display:none;">You are already part of me.</p>
 </div>
 
-<!-- PAGE 3 -->
-<div id="p3" class="page">
-<section>
-<h1>I am always next to you ❤️</h1>
-
-<div id="countdown">5</div>
-
+<!-- 🎞️ SCREEN 3 -->
+<div id="s3" class="screen">
+<h1>I am always there for you ❤️</h1>
+<div id="count">5</div>
 <p id="msg"></p>
-</section>
 </div>
 
 <script>
 
-let locked = false;
+let locked=false;
 
-function go(){
-    document.getElementById("p1").style.display="none";
-    document.getElementById("p2").classList.add("active");
+function startStory(){
+    document.getElementById("s1").style.display="none";
+    document.getElementById("s2").classList.add("active");
 }
 
 function unlock(){
-    const val = document.getElementById("pass").value.trim().toLowerCase();
+    const v=document.getElementById("pass").value.trim().toLowerCase();
 
-    if(val === "honey"){
+    if(v==="honey"){
         document.getElementById("secret").style.display="block";
 
         setTimeout(()=>{
-            document.getElementById("p2").style.display="none";
-            document.getElementById("p3").classList.add("active");
+            document.getElementById("s2").style.display="none";
+            document.getElementById("s3").classList.add("active");
 
             if(!locked){
-                locked = true;
-                start();
+                locked=true;
+                playFinal();
             }
         },1000);
     }
 }
 
-function start(){
-    let c = 5;
-    const el = document.getElementById("countdown");
-    const msg = document.getElementById("msg");
+function playFinal(){
+    let c=5;
+    const el=document.getElementById("count");
+    const msg=document.getElementById("msg");
 
-    let t = setInterval(()=>{
+    let t=setInterval(()=>{
         c--;
-        el.innerText = c;
+        el.innerText=c;
 
-        if(c <= 0){
+        if(c<=0){
             clearInterval(t);
             el.style.display="none";
 
-            /* emotional flow */
-            setTimeout(()=> msg.innerText="I am always next to you ❤️", 300);
-            setTimeout(()=> msg.innerText="Are you still angry on me?", 2500);
-            setTimeout(()=> msg.innerText="I really love you ❤️", 4500);
-            setTimeout(()=> msg.innerText="Please call me. I am waiting ❤️", 6500);
+            setTimeout(()=>msg.innerText="I am always there for you ❤️", 400);
+            setTimeout(()=>msg.innerText="Are you still angry on me?", 2500);
+            setTimeout(()=>msg.innerText="I really love you ❤️", 4500);
+            setTimeout(()=>msg.innerText="Please call me. I am waiting ❤️", 6500);
         }
     },600);
 }
 
 /* hearts */
 setInterval(()=>{
-    let h = document.createElement("div");
+    let h=document.createElement("div");
     h.className="heart";
     h.innerText="❤️";
     h.style.left=Math.random()*100+"vw";
-    h.style.fontSize=(Math.random()*20+10)+"px";
     document.body.appendChild(h);
     setTimeout(()=>h.remove(),6000);
-},400);
+},500);
 
 </script>
 
